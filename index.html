@@ -7,32 +7,7 @@
 	<title>Lab 2</title>
 	<meta name="Author" content="Ethan Richardson" />
 	<meta name="Description" content="Form Verification" />
-
-    <style type="text/css">
-    body{
-        background-image:url("bookbg.jpg");
-        background-size: 90%;
-        color:white;
-        text-align:center;
-    }
-    
-    #nameerr, #gendererr, #ageerr, #eduerr, #stateerr, #occerr, #hobbyerr, #phoneerr, #emailerr, #subjecterr, #explainerr{
-        color:red;
-    }
-    
-    #firstName, #lastName, #occ, #hobby, #subject, #explain{
-        text-transform:capitalize;
-    }
-    
-    table{
-		background-color:grey;
-		opacity:0.8;
-		filter: alpha(opacity=80);
-	 	border:2px solid black;
- 		text-align:center;
-	}
-	</style>
-    
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -43,22 +18,22 @@
     <table cellspacing = "50" width="750">
     <tr><td>
         
-    <nobr>First Name: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Last Name:</br>
+    First Name: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Last Name:<br />
         <input type="text" id="firstName" onchange="nameerr(this.value)">
         <input type="text" id="lastName" onchange="nameerr(this.value)">
         <p id="nameerr"></p>
-    </nobr>
+    
 
     
-    <br />Gender: <br /><input type="radio" name="gender" id="male" value="male">Male
-                        <input type="radio" name="gender" id="female" value="female">Female<br />
+    <br />Gender: <br /><input type="radio" id="male" value="male" onchange="gendererr(this, document.getElementById('female'))">Male
+                        <input type="radio" id="female" value="female" onchange="gendererr(document.getElementById('male'), this)">Female<br />
     <p id="gendererr"></p>
     
-    <br />Age: <br /><input type="text" id="ageInput" onchange="validateForm()"><br />
+    <br />Age: <br /><input type="text" id="ageInput" onchange="ageerr(this.value)"><br />
     <p id="ageerr"></p>
     
     <br /><form>Highest Degree Earned:
-    <select id="edu" onchange="validateForm()">
+    <select id="edu" onchange="eduerr(this.value)">
         <option selected value="empty">Education...</option>
         <option value="High School">High School</option>
         <option value="Associate">Associate's</option>
@@ -149,7 +124,6 @@
     
     <!--Dummy Submit Button-->
     <button type="button" onclick="validateForm()">Submit!</button>
-    </form>
     
     </td></tr></table></center>
 </body>	

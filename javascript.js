@@ -7,6 +7,7 @@ var falseAlpha = "Field must not contain alphabetical characters.";
 
 function nameerr(name) {
     document.getElementById("nameerr").innerHTML='';
+    
     //not alphabet, is whitespace
     if(!name.match(/^[a-zA-Z]+$/)){
         document.getElementById("nameerr").innerHTML=trueAlpha;
@@ -23,57 +24,15 @@ function nameerr(name) {
         document.getElementById("nameerr").innerHTML=blank;
 }
 
-function validateForm() {
-
-    var first = document.getElementById("firstName").value;
-    var last = document.getElementById("lastName").value;
-    var age = document.getElementById("ageInput").value;
-    var edu = document.getElementById("edu").value;
-    var state = document.getElementById("state").value;
-    var occ = document.getElementById("occ").value;
-    var hobby = document.getElementById("hobby").value;
-    var num = document.getElementById("num").value;
-    var email = document.getElementById("email").value;
-    var subject = document.getElementById("subject").value;
-    var explain = document.getElementById("expain").value;
-
-    
-    //*******************************
-    //START NAME VALIDATION (nameerr)
-    //*******************************
-    /*
-    document.getElementById("nameerr").innerHTML='';
-    
-    //not alphabet, is whitespace
-    if((!first.match(/^[a-zA-Z]+$/)
-        || !last.match(/^[a-zA-Z]+$/))){
-        document.getElementById("nameerr").innerHTML=trueAlpha;
-        
-        if(first.match(".*\\d.*")
-           || last.match(".*\\d.*"))
-            document.getElementById("nameerr").innerHTML=falseNum;
-        
-        if(first.match(" ")
-           || last.match(" "))
-            document.getElementById("nameerr").innerHTML=whitespace;
-    }
-    
-    //Matches Empty String
-    if((!first.match(/\S/) || (!last.match(/\S/))))
-        document.getElementById("nameerr").innerHTML=blank;
-    */
-    //***********************************
-    //START GENDER VALIDATION (gendererr)
-    //***********************************
+function gendererr(gender) {
     document.getElementById("gendererr").innerHTML='';
     
-    if((!document.getElementById('male').checked) && (!document.getElementById('female').checked)) {
+    if(!gender.checked) {
         document.getElementById("gendererr").innerHTML="Select your gender";
     }
-    
-    //*****************************
-    //START AGE VALIDATION (ageerr)
-    //*****************************
+}
+
+function ageerr(age){
     document.getElementById("ageerr").innerHTML='';
 
     //if not a number, age is between 1 and 100
@@ -90,15 +49,54 @@ function validateForm() {
     //if empty
     if((!age.match(/\S/)))
         document.getElementById("ageerr").innerHTML=blank;
-    
-    //*******************************
-    //START EDU VALIDATION (eduerr)
-    //*******************************
+}
+
+function eduerr(edu){
     document.getElementById("eduerr").innerHTML='';
     
     if(edu.match("empty")){
         document.getElementById("eduerr").innerHTML="Select your education.";
     }
+}
+
+function validateForm() {
+
+    var first = document.getElementById("firstName").value;
+    var last = document.getElementById("lastName").value;
+    var male = document.getElementById("male");
+    var female = document.getElementById("female");
+    
+    var age = document.getElementById("ageInput").value;
+    var edu = document.getElementById("edu").value;
+    var state = document.getElementById("state").value;
+    var occ = document.getElementById("occ").value;
+    var hobby = document.getElementById("hobby").value;
+    var num = document.getElementById("num").value;
+    var email = document.getElementById("email").value;
+    var subject = document.getElementById("subject").value;
+    var explain = document.getElementById("expain").value;
+
+    
+    //*******************************
+    //START NAME VALIDATION (nameerr)
+    //*******************************
+    nameerr(first)
+    nameerr(last)
+
+    //***********************************
+    //START GENDER VALIDATION (gendererr)
+    //***********************************
+    gendererr(male, female)
+    
+    //*****************************
+    //START AGE VALIDATION (ageerr)
+    //*****************************
+    ageerr(age)
+    
+    //*******************************
+    //START EDU VALIDATION (eduerr)
+    //*******************************
+    eduerr(edu)
     
     //*********************************
     //START STATE VALIDATION (stateerr)
